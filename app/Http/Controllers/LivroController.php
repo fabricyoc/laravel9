@@ -62,7 +62,8 @@ class LivroController extends Controller
      */
     public function edit(Livro $livro)
     {
-        //
+        // dd($livro->totboo);
+        return view('livros.edit', compact('livro'));
     }
 
     /**
@@ -74,7 +75,15 @@ class LivroController extends Controller
      */
     public function update(UpdateLivroRequest $request, Livro $livro)
     {
-        //
+        $l = Livro::find($livro->id)->update([
+                'author' => $request->autor,
+                'title' => $request->titulo,
+                'subject' => $request->assunto,
+                'totBooks' => $request->totLivros,
+                'dateAcquisition' => $request->dataAquisicao,
+            ]);
+
+        return redirect()->route('livros.show', $livro->id);
     }
 
     /**
@@ -85,6 +94,9 @@ class LivroController extends Controller
      */
     public function destroy(Livro $livro)
     {
-        //
+        Livro::find($livro->id)
+            ->delete();
+
+        return redirect()->route('livros.index');
     }
 }

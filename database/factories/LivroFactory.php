@@ -18,8 +18,8 @@ class LivroFactory extends Factory
     {
         return [
             'author' => $this->faker->name,
-            'title' => $this->faker->title,
-            'subject' => $this->faker->text,
+            'title' => fake()->text(20),
+            'subject' => fake()->text(30),
             'dateAcquisition' => $this->faker->date,
             // 'totBooks' => $this->faker->randomDigit,
             'totBooks' => fake()->randomDigit(),
