@@ -15,6 +15,17 @@ class LivroSeeder extends Seeder
      */
     public function run()
     {
+        // Criação específica
+        Livro::factory()->create([
+            'author' => 'Fabricyo Costa',
+            'title' => 'Exterminador II',
+            'subject' => 'Ficção',
+            'dateAcquisition' => date('Y-m-d'),
+            'totBooks' => random_int(1, 30),
+        ]);
+
+        // Criação abstrata
         Livro::factory(5)->create();
+
     }
 }
