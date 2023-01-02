@@ -60,18 +60,17 @@
                         <input type="button" value="Voltar">
                     </a>
 
-                    <a href="{{ route('pessoas.destroy', $pessoa->id) }}">
+                    {{-- NÃO DÁ CERTO --}}
+                    {{-- <a href="{{ route('pessoas.destroy', $pessoa->id) }}">
                         <input type="button" value="Deletar">
-                    </a>
-
-                    {{-- <form action="{{ route('pessoas.destroy', $pessoa->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <input type="submit" value="Deletar">
-                    </form> --}}
+                    </a> --}}
                 </td>
             </tr>
         </table>
     </form>
-
+    <form action="{{ route('pessoas.destroy', $pessoa->id) }}" method="post">
+        @csrf
+        @method('delete')
+        <input type="submit" value="Deletar">
+    </form>
 @endsection

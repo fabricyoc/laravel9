@@ -25,8 +25,17 @@ class PessoaController extends Controller
             return redirect()->route('pessoas.create');
         }
         else {
+            // Gerar a matrícula: ano_inscricao modalidade_ensino turma seq_aluno
+            $ano = random_int(2017, 2023);
+            $modalidade = random_int(1, 2); // 1. regular | 2. técnico
+            $turma = str_pad(random_int(1, 4), 2, 0, STR_PAD_LEFT); // 1-4 qnt de turmas
+            // $seq = random_int(1, 40); // 1-40 número de alunos
+            $seq = str_pad(random_int(1, 40), 2, 0, STR_PAD_LEFT); // 1-40 número de alunos
+            $matricula = "$ano$modalidade$turma$seq";
+
             Pessoa::create([
-                'matricula' => fake()->randomNumber(9, true),
+                // 'matricula' => fake()->randomNumber(9, true),
+                'matricula' => $matricula,
                 'nome' => $request->nome,
                 'dataNasc' => $request->dataNasc,
                 'sexo' => $request->sexo,
