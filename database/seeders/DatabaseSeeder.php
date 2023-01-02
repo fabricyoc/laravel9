@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BusinessSeeder::class,
             LivroSeeder::class,
+            PessoaSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([
