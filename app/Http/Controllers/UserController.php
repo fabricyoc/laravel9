@@ -9,8 +9,16 @@ class UserController extends Controller
 {
     public function show(User $user)
     {
-        // return 'Estou no UserController.show '. $u;
-        // return $user;
+        // dd($user->hasPosts());
+
+
+        // $user->hasPosts()->create([
+        //     'title' => 'Meu primeiro post',
+        //     'body' => 'Isso é um post',
+        // ]);
+
+        dd($user->hasPosts);
+
         return view('user', [
             'user' => $user,
         ]);
