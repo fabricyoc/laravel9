@@ -17,7 +17,8 @@ class UserController extends Controller
         //     'body' => 'Isso é um post',
         // ]);
 
-        dd($user->hasPosts);
+        // dd($user->hasPosts()); // a função hasPosts() traz a relação
+        dd($user->hasPosts->toArray()); // campo posts
 
         return view('user', [
             'user' => $user,

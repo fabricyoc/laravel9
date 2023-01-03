@@ -3,6 +3,7 @@
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\PessoaController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -77,3 +78,6 @@ Route::resource('business', BusinessController::class);
 
 // Pessoa
 Route::resource('pessoas', PessoaController::class);
+
+// Posts
+Route::resource('posts', PostController::class);

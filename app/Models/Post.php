@@ -15,4 +15,11 @@ class Post extends Model
         'tags',
         'author',
     ];
+
+    // protected $with = ['user']; // dispensa o uso do load p carregar a relação
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
