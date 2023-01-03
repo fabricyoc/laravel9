@@ -58,11 +58,21 @@ class PessoaController extends Controller
 
     public function update(UpdatePessoaRequest $request, Pessoa $pessoa)
     {
-        Pessoa::find($pessoa->id)->update([
-            'nome' => $request->nome,
-            'dataNasc' => $request->dataNasc,
-            'sexo' => $request->sexo,
-        ]);
+        //
+        // MÉTODO TRADICIONAL
+        //
+        // Pessoa::find($pessoa->id)->update([
+        //     'nome' => $request->nome,
+        //     'dataNasc' => $request->dataNasc,
+        //     'sexo' => $request->sexo,
+        // ]);
+
+        //
+        // MÉTODO MAIS RECENTE
+        //
+        Pessoa::find($pessoa->id)
+            ->fill($request->only('nome', 'dataNasc', 'sexo'))
+            ->save();
         return redirect()->route('pessoas.index');
     }
 
