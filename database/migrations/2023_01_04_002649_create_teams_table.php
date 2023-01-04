@@ -19,6 +19,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
+
+        // nome da tabela pivot no singular e em ordem alfabética
         Schema::create('team_user', function (Blueprint $table) {
             $table->id(); // opcional
             $table->foreignId('user_id')
