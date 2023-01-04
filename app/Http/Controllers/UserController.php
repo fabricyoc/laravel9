@@ -9,6 +9,21 @@ class UserController extends Controller
 {
     public function show(User $user)
     {
+
+        // Relação N:N
+        // attach vai linkando
+        // $user->teams()->attach(2); // attach cria um link entre o usuário e o time de número 1
+        // $user->teams()->detach(2); // deslinka
+
+        dd($user->load('teams')->toArray());
+
+        return $user->teams;
+
+
+
+
+
+
         // dd($user->hasPosts());
 
 

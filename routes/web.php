@@ -4,6 +4,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -81,3 +82,6 @@ Route::resource('pessoas', PessoaController::class);
 
 // Posts
 Route::resource('posts', PostController::class);
+
+// Team
+Route::resource('teams', TeamController::class);
