@@ -14,6 +14,7 @@ class Post extends Model
         'body',
         'tags',
         'author',
+        'user_id',
     ];
 
     // protected $with = ['user']; // dispensa o uso do load p carregar a relação

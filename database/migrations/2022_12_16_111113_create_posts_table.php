@@ -20,7 +20,7 @@ return new class extends Migration
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
             $table->string('title');
-            $table->longText('body');
+            $table->longText('body')->nullable();
             $table->string('tags')->nullable();
             $table->string('author')->nullable();
             $table->timestamps();

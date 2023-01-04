@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             BusinessSeeder::class,
             LivroSeeder::class,
             PessoaSeeder::class,
+            PostSeeder::class,
         ]);
 
         // \App\Models\User::factory()->create([
