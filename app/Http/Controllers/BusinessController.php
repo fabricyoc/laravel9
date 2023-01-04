@@ -31,7 +31,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        //
+        return view('business.create');
     }
 
     /**
@@ -42,12 +42,22 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        $b = Business::create([
-            'name' => 'VF Variedades',
-            'email' => "vfvariedades@gmail.com",
-            'address' => "Rua projetada 1",
+        // $b = Business::create([
+        //     'name' => 'VF Variedades',
+        //     'email' => "vfvariedades@gmail.com",
+        //     'address' => "Rua projetada 1",
+        // ]);
+        // dd($b);
+
+        $input = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            // 'address' => 'string',
         ]);
-        dd($b);
+
+        $business = Business::create($input);
+
+        dd($business->toArray());
     }
 
     /**
