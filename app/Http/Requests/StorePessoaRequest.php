@@ -25,7 +25,18 @@ class StorePessoaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => 'required|string',
+            'dataNasc' => 'required',
+            'sexo' => 'required',
+        ];
+    }
+
+    // Função com o objetivo de traduzir as mensagens
+    public function messages()
+    {
+        return [
+            'required' => 'O :attribute é obrigatório!',
+            'nome.string' => 'O campo NOME só pode ter texto.',
         ];
     }
 }

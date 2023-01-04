@@ -3,17 +3,36 @@
 @section('titulo', 'Cadastrar Pessoa')
 
 @section('conteudo')
+
+    {{-- Todos os erros --}}
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            {{$error}}
+            <br>
+        @endforeach
+    @endif
+
     <h1>Cadastro de Pessoa</h1>
     <form action="{{ route('pessoas.store') }}" method="post">
         @csrf
         <table>
             <tr>
                 <td><label for="idNome">Nome:</label></td>
-                <td><input type="text" name="nome" id="idNome"></td>
+                <td>
+                    <input type="text" name="nome" id="idNome" value="{{old('nome')}}">
+                    {{-- @error('nome')
+                        {{ $message }}
+                    @enderror --}}
+                </td>
             </tr>
             <tr>
                 <td><label for="idDataNasc">Data de Nascimento:</label></td>
-                <td><input type="date" name="dataNasc" id="idDataNasc"></td>
+                <td>
+                    <input type="date" name="dataNasc" id="idDataNasc" value="{{old('dataNasc')}}">
+                    {{-- @error('dataNasc')
+                        {{$message}}
+                    @enderror --}}
+                </td>
             </tr>
             <tr>
                 <td><label for="idSexo">Sexo:</label></td>
