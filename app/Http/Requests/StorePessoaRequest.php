@@ -28,6 +28,7 @@ class StorePessoaRequest extends FormRequest
             'nome' => 'required|string',
             'dataNasc' => 'required',
             'sexo' => 'required',
+            'foto' => 'file',
         ];
     }
 

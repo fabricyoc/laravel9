@@ -9,6 +9,11 @@
         @method('put')
         <table>
             <tr>
+                <td colspan="2" style="text-align: center;">
+                    <img src="{{ Storage::url($pessoa->foto) }}" alt="Sem foto" width="180" style="border-radius: 80px">
+                </td>
+            </tr>
+            <tr>
                 <td><label for="idMatricula">Matrícula</label></td>
                 <td><input type="text" name="matricula" id="idMatricula" value="{{$pessoa->matricula}}" disabled></td>
             </tr>

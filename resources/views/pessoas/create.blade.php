@@ -13,7 +13,7 @@
     @endif
 
     <h1>Cadastro de Pessoa</h1>
-    <form action="{{ route('pessoas.store') }}" method="post">
+    <form action="{{ route('pessoas.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <table>
             <tr>
@@ -51,6 +51,12 @@
                         <option value="f">Feminino</option>
                         <option value="n">Não informar</option>
                     </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="idFoto">Foto:</label></td>
+                <td>
+                    <input type="file" name="foto" id="idFoto" value="{{ old('foto') }}">
                 </td>
             </tr>
             <tr>

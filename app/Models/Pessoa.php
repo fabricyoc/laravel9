@@ -14,5 +14,6 @@ class Pessoa extends Model
         'nome',
         'dataNasc',
         'sexo',
+        'foto',
     ];
 }

@@ -62,12 +62,18 @@ class PessoaController extends Controller
 
 
 
-        
+
         //
         // COM VALIDAÇÃO NO StorePessoaRequest
         //
         $input = $request->validated();
-        dd($input);
+        // Atribuir matrícula
+        $input['matricula'] = $this->gerarMatricula();
+
+        // Buscar o caminho da foto
+        $path = $input['foto']->store('fotos', 'public');
+        $input['foto'] = $path;
+        Pessoa::create($input);
 
         return Redirect::route('pessoas.index');
 
