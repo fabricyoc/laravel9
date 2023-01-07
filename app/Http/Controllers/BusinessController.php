@@ -31,7 +31,8 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        return view('business.create');
+        $businesses = Business::all();
+        return view('business.create', compact('businesses'));
     }
 
     /**
@@ -53,11 +54,19 @@ class BusinessController extends Controller
             'name' => 'required|string',
             'email' => 'required|email',
             // 'address' => 'string',
+            'logo' => 'file',
         ]);
 
+        // $input['logo']->store('logos'); // salva dentro de storage
+        $path = $input['logo']->store('logos', 'public'); // salva dentro de storage/public
+        // dd($path);0
+        // dd($input['logo']);
+
+        $input['logo'] = $path;
+        // dd($input);
         $business = Business::create($input);
 
-        dd($business->toArray());
+        // dd($business->toArray());
     }
 
     /**

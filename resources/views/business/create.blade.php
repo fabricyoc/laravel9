@@ -14,7 +14,7 @@
         @endforeach
     @endif
 
-    <form action="{{ route('business.store') }}" method="post">
+    <form action="{{ route('business.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <table>
             <tr>
@@ -43,10 +43,26 @@
                 <td><input type="text" name="address" id="idAddress"></td>
             </tr>
             <tr>
+                <td><label for="idLogo">Logo:</label></td>
+                <td><input type="file" name="logo" id="idLogo" value="{{ old('logo') }}"></td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     <input type="submit" value="Cadastrar">
                 </td>
             </tr>
         </table>
     </form>
+
+    <hr>
+    @foreach ($businesses as $b)
+        {{ $b->name }}
+        <br>
+        @if ($b->logo)
+            {{-- em produção é da forma abaixo --}}
+            {{ Storage::disk('public')->url($b->logo) }}
+            <br>
+            <img src="{{ Storage::disk('public')->url($b->logo) }}" alt="zebra" width="100">
+        @endif
+    @endforeach
 @endsection

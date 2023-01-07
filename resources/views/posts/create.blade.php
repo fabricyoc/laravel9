@@ -22,6 +22,7 @@
                     </select>
                 </td>
             </tr>
+
             <tr>
                 <td><input type="submit" value="Cadastrar"></td>
             </tr>
