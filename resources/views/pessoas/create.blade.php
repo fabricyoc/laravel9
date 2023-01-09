@@ -3,15 +3,6 @@
 @section('titulo', 'Cadastrar Pessoa')
 
 @section('conteudo')
-
-    {{-- Todos os erros --}}
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            {{$error}}
-            <br>
-        @endforeach
-    @endif
-
     <h1>Cadastro de Pessoa</h1>
     <form action="{{ route('pessoas.store') }}" method="post" enctype="multipart/form-data">
         @csrf
@@ -23,6 +14,18 @@
                     {{-- @error('nome')
                         {{ $message }}
                     @enderror --}}
+                </td>
+            </tr>
+            <tr>
+                <td><label for="idSenha">Senha:</label></td>
+                <td>
+                    <input type="password" name="senha" id="idSenha" value="{{ old('senha') }}">
+                </td>
+            </tr>
+            <tr>
+                <td><label for="idConfirmSenha">Confirme a senha:</label></td>
+                <td>
+                    <input type="password" name="confirmSenha" id="idConfirmSenha">
                 </td>
             </tr>
             <tr>
@@ -69,4 +72,15 @@
             </tr>
         </table>
     </form>
+
+    {{-- Todos os erros --}}
+    @if ($errors->any())
+        <hr>
+        <div style="color: red;">
+            @foreach ($errors->all() as $error)
+                {{$error}}
+                <br>
+            @endforeach
+        </div>
+    @endif
 @endsection

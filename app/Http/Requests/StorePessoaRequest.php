@@ -29,6 +29,7 @@ class StorePessoaRequest extends FormRequest
             'dataNasc' => 'required',
             'sexo' => 'required',
             'foto' => 'file',
+            'senha' => 'required',
         ];
     }
 
@@ -36,7 +37,8 @@ class StorePessoaRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'O :attribute é obrigatório!',
+            // 'required' => 'O :attribute é obrigatório!',
+            'required' => 'O campo :ATTRIBUTE é obrigatório!',
             'nome.string' => 'O campo NOME só pode ter texto.',
         ];
     }

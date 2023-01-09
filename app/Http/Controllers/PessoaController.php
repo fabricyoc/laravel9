@@ -66,16 +66,47 @@ class PessoaController extends Controller
         //
         // COM VALIDAÇÃO NO StorePessoaRequest
         //
-        $input = $request->validated();
-        // Atribuir matrícula
-        $input['matricula'] = $this->gerarMatricula();
+        // $input = $request->validated();
+        // // Atribuir matrícula
+        // $input['matricula'] = $this->gerarMatricula();
 
-        // Buscar o caminho da foto
-        $path = $input['foto']->store('fotos', 'public');
-        $input['foto'] = $path;
-        Pessoa::create($input);
+        // // Buscar o caminho da foto
+        // $path = $input['foto']->store('fotos', 'public');
+        // $input['foto'] = $path;
+        // Pessoa::create($input);
 
-        return Redirect::route('pessoas.index');
+        // return Redirect::route('pessoas.index');
+
+
+        //
+        // Método PROFISSIONAL
+        //
+
+        // validator => variável global reservada
+        $validator = $this->testarSenhas($request->senha, $request->confirmSenha);
+
+        if (!$validator)
+        {
+            $input = $request->validated();
+            // atribuir matrícula
+            $input['matricula'] = $this->gerarMatricula();
+
+            // Buscar o caminho da foto
+            $path = $input['foto']->store('fotos', 'public');
+            $input['foto'] = $path;
+
+            // $input['senha'] = bcrypt($request->senha);
+            dd($input);
+
+            Pessoa::create($input);
+            return Redirect::route('pessoas.index');
+        }
+        else
+        {
+            // Retorna os erros das senhas
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
 
     }
 
@@ -134,5 +165,23 @@ class PessoaController extends Controller
 
 
         return "$ano$modalidade$turma$seq";
+    }
+
+    private function testarSenhas($senha, $confirmSenha)
+    {
+        if ($senha == null) {
+            return "O campo SENHA é obrigatório";
+        }
+        elseif ($confirmSenha == null) {
+            return "O campo CONFIRME A SENHA é obrigatório";
+        }
+        elseif ($senha != $confirmSenha) {
+            return "As senhas são DIFERENTES.";
+        }
+        else {
+            // Se retornar FALSE, o programa seguirá para os próximos passos
+            return false;
+        }
+
     }
 }

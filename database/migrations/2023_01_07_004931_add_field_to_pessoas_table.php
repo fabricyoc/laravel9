@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('pessoas', function (Blueprint $table) {
             $table->string('foto')->nullable()->after('nome');
+            $table->string('senha')->after('foto');
         });
     }
 
@@ -26,7 +27,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('pessoas', function (Blueprint $table) {
-            $table->dropColumn('foto');
+            $table->dropColumn([
+                'foto', 'senha'
+            ]);
         });
     }
 };
