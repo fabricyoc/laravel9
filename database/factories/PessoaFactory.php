@@ -19,6 +19,7 @@ class PessoaFactory extends Factory
         return [
             'matricula' => $this->faker->randomNumber(9, true), // 2017 1 01 01 - ano_ingresso modalidade turma sequencia_aluno
             'nome' => fake()->name(),
+            'senha' => '123',
             'dataNasc' => fake()->date(),
             'sexo' => $this->faker->randomElement(['m', 'f', 'n']), // masculino, feminino, não informado
         ];

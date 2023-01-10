@@ -14,14 +14,20 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        $businesses = Business::all();
+        // $businesses = Business::all();
         // $businesses = Business::find(1);
         // $businesses = Business::where('name', 'Rau-Skiles')->get(); // coleção
         // $businesses = Business::where('name', 'Rau-Skiles')->first(); // 1o que achar
         // dd($businesses);
 
-        dd($businesses->toArray());
+
+        // dd($businesses->toArray());
         // dd($businesses->toSql());
+
+
+        // Paginação
+        $businesses = Business::paginate();
+        return view('business.index', compact('businesses'));
     }
 
     /**
