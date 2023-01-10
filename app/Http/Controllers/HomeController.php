@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -9,7 +10,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $produtos = Produto::all();
+        return view('home', compact('produtos'));
     }
 
     public function create()
@@ -36,7 +38,7 @@ class HomeController extends Controller
     {
         //
     }
-    
+
     public function destroy($id)
     {
         //

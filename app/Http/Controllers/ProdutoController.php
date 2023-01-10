@@ -26,7 +26,9 @@ class ProdutoController extends Controller
 
     public function show(Produto $produto)
     {
-        //
+        return view('produto', [
+            'produto' => $produto
+        ]);
     }
 
     public function edit(Produto $produto)
