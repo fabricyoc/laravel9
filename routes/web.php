@@ -21,7 +21,7 @@ Route::get('/produto/{produto:slug}', [ProdutoController::class, 'show'])->name(
 
 
 // Admin
-Route::get('/admin/produtos', [AdminProdutoController::class, 'index']);
+Route::get('/admin/produtos', [AdminProdutoController::class, 'index'])->name('admin.index');
 Route::get('/admin/produtos/create', [AdminProdutoController::class, 'create'])->name('admin_produto.create');
 Route::post('/admin/produtos', [AdminProdutoController::class, 'store'])->name('admin_produto.store');
 
