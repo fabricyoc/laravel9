@@ -20,20 +20,28 @@
                     </tr>
                     </thead>
                     <tbody class="divide-y">
-                    <tr>
-                        <td class="px-4 py-3">1</td>
-                        <td class="px-4 py-3">
-                            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/800x450">
-                        </td>
-                        <td class="px-4 py-3">Produto 1</td>
-                        <td class="px-4 py-3">R$10</td>
-                        <td class="px-4 py-3">10</td>
-                        <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
-                            <a class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
-                            <a class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
-                        </td>
-                    </tr>
-                    <tr class="bg-gray-50">
+                    @foreach ($produtos as $produto)
+                        <tr
+                            @if ($loop->even)
+                                class="bg-gray-100"
+                            @endif
+                        >
+                            {{-- $loop é um variável interna do foreach --}}
+                            <td class="px-4 py-3">{{ $loop->iteration }}</td>
+                            <td class="px-4 py-3">
+                                {{-- <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/800x450"> --}}
+                                <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="{{$produto->imagem}}">
+                            </td>
+                            <td class="px-4 py-3">{{$produto->nome}}</td>
+                            <td class="px-4 py-3">R$ {{number_format($produto->preco, 2, ",", ".")}}</td>
+                            <td class="px-4 py-3">{{$produto->estoque}}</td>
+                            <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
+                                <a class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
+                                <a class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr class="bg-gray-50">
                         <td class="px-4 py-3">2</td>
                         <td class="px-4 py-3">
                             <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://dummyimage.com/800x450">
@@ -45,7 +53,7 @@
                             <a class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
                             <a class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
                         </td>
-                    </tr>
+                    </tr> --}}
                     </tbody>
                 </table>
             </div>
