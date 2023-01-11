@@ -36,7 +36,7 @@
                             <td class="px-4 py-3">R$ {{number_format($produto->preco, 2, ",", ".")}}</td>
                             <td class="px-4 py-3">{{$produto->estoque}}</td>
                             <td class="px-4 py-3 text-sm text-right space-x-3 text-gray-900">
-                                <a class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
+                                <a href="{{ route('admin_produto.edit', $produto->id) }}" class="mt-3 text-indigo-500 inline-flex items-center">Editar</a>
                                 <a class="mt-3 text-indigo-500 inline-flex items-center">Deletar</a>
                             </td>
                         </tr>

@@ -17,4 +17,20 @@ class AdminProdutoController extends Controller
     {
         return view('admin.produto_edit');
     }
+
+    public function update()
+    {
+        # code...
+    }
+
+    public function create()
+    {
+        return view('admin.produto_create');
+
+    }
+
+    public function store()
+    {
+        # code...
+    }
 }
