@@ -15,14 +15,33 @@ class AdminProdutoController extends Controller
         return view('admin.produtos', compact('produtos'));
     }
 
-    public function edit()
+    public function edit(Produto $produto)
     {
-        return view('admin.produto_edit');
+        return view('admin.produto_edit', [
+            'produto' => $produto
+        ]);
     }
 
-    public function update()
+    public function update(Produto $produto, Request $request)
     {
-        # code...
+        $input = $request->validate([
+            'nome' => 'string|required|min:2',
+            'preco' => 'string|required',
+            'estoque' => 'integer|nullable',
+            'imagem' => 'file|nullable',
+            'descricao' => 'string|nullable',
+        ]);
+
+        if (!empty($input['imagem']) && $input['imagem']->isValid())
+        {
+            $path = $input['imagem']->store('fotos', 'public');
+            $input['imagem'] = $path;
+        }
+
+        $produto->fill($input);
+        $produto->save();
+
+        return Redirect::route('admin.index');
     }
 
     public function create()
