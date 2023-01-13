@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAdminProdutoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -23,15 +24,9 @@ class AdminProdutoController extends Controller
         ]);
     }
 
-    public function update(Produto $produto, Request $request)
+    public function update(Produto $produto, StoreAdminProdutoRequest $request)
     {
-        $input = $request->validate([
-            'nome' => 'string|required|min:2',
-            'preco' => 'string|required',
-            'estoque' => 'integer|nullable',
-            'imagem' => 'file|nullable',
-            'descricao' => 'string|nullable',
-        ]);
+        $input = $request->validated();
 
         if (!empty($input['imagem']) && $input['imagem']->isValid())
         {
@@ -55,16 +50,9 @@ class AdminProdutoController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(StoreAdminProdutoRequest $request)
     {
-        // dd($request->toArray());
-        $input = $request->validate([
-            'nome' => 'string|required|min:2',
-            'preco' => 'string|required',
-            'estoque' => 'integer|nullable',
-            'imagem' => 'file|nullable',
-            'descricao' => 'string|nullable',
-        ]);
+        $input = $request->validated();
 
         $input['slug'] = Str::slug($input['nome']);
 

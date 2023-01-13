@@ -16,24 +16,33 @@
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="idName" class="leading-7 text-sm text-gray-600">Nome do produto</label>
-                                <input value="{{ $produto->nome }}" type="text" id="idName" name="nome" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                <input value="{{ old('nome', $produto->nome) }}" type="text" id="idName" name="nome" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
+                            @error('nome')
+                                <div class="text-red-400 text-sm">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="idPrice" class="leading-7 text-sm text-gray-600">Preço (R$)</label>
-                                <input value="{{ $produto->preco }}" type="text" id="idPrice" name="preco"
+                                <input value="{{ old('preco', $produto->preco) }}" type="text" id="idPrice" name="preco"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
+                            @error('preco')
+                                <div class="text-red-400 text-sm">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="p-2 w-1/2">
                             <div class="relative">
                                 <label for="idEstoque" class="leading-7 text-sm text-gray-600">Estoque</label>
-                                <input value="{{ $produto->estoque }}" type="text" id="idEstoque" name="estoque"
+                                <input value="{{ old('estoque', $produto->estoque) }}" type="text" id="idEstoque" name="estoque"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
+                            @error('estoque')
+                                <div class="text-red-400 text-sm">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="p-2 w-1/2">
@@ -42,6 +51,9 @@
                                 <input type="file" id="idCover" name="imagem"
                                     class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
+                            @error('imagem')
+                                <div class="text-red-400 text-sm">{{$message}}</div>
+                            @enderror
                         </div>
 
                         @if ($produto->imagem)
@@ -63,8 +75,11 @@
                                 <label for="idDescription" class="leading-7 text-sm text-gray-600">Descrição</label>
                                 <textarea
                                     id="idDescription" name="descricao"
-                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $produto->descricao}}</textarea>
+                                    class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ old('descricao', $produto->descricao)}}</textarea>
                             </div>
+                            @error('descricao')
+                                <div class="text-red-400 text-sm">{{$message}}</div>
+                            @enderror
                         </div>
 
                         <div class="p-2 w-full">
