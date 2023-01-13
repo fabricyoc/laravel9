@@ -27,3 +27,12 @@ Route::post('/admin/produtos', [AdminProdutoController::class, 'store'])->name('
 
 Route::get('/admin/produtos/{produto}/edit', [AdminProdutoController::class, 'edit'])->name('admin_produto.edit');
 Route::put('/admin/produtos/{produto}', [AdminProdutoController::class, 'update'])->name('admin_produto.update');
+
+// Método convencional: precisa criar um Form:POST
+// Route::delete('/admin/produtos/{produto}', [AdminProdutoController::class, 'destroy'])->name('admin_produto.destroy');
+
+// Método "PRO"
+Route::get('/admin/produtos/{produto}/delete', [AdminProdutoController::class, 'destroy'])->name('admin_produto.destroy');
+
+
+Route::get('/admin/produtos/{produto}/delete-imagem', [AdminProdutoController::class, 'destroyImage'])->name('admin_produto.destroy.image');

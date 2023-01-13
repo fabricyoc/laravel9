@@ -44,6 +44,20 @@
                             </div>
                         </div>
 
+                        @if ($produto->imagem)
+                            <div class="p-2 w-full">
+                                <img
+                                    src="@if (str_contains($produto->imagem, 'fotos/'))
+                                            {{Storage::url($produto->imagem)}}
+                                        @else
+                                            {{$produto->imagem}}
+                                        @endif"
+                                    width="200px"
+                                >
+                                <a href="{{ route('admin_produto.destroy.image', $produto->id) }}">Deletar Imagem</a>
+                            </div>
+                        @endif
+
                         <div class="p-2 w-full">
                             <div class="relative">
                                 <label for="idDescription" class="leading-7 text-sm text-gray-600">Descrição</label>

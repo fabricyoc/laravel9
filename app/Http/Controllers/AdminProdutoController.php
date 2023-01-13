@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AdminProdutoController extends Controller
@@ -34,6 +35,10 @@ class AdminProdutoController extends Controller
 
         if (!empty($input['imagem']) && $input['imagem']->isValid())
         {
+            // if ($produto->imagem != null) {
+            //     Storage::disk('public')->delete($produto->imagem);
+            // }
+            Storage::disk('public')->delete($produto->imagem ?? '');
             $path = $input['imagem']->store('fotos', 'public');
             $input['imagem'] = $path;
         }
@@ -72,5 +77,23 @@ class AdminProdutoController extends Controller
         Produto::create($input);
 
         return Redirect::route('admin.index');
+    }
+
+    public function destroy(Produto $produto)
+    {
+        $produto->delete();
+        Storage::disk('public')->delete($produto->imagem);
+
+        return Redirect::route('admin.index');
+    }
+
+    public function destroyImage(Produto $produto)
+    {
+        // Storage::delete($produto->imagem);
+        Storage::disk('public')->delete($produto->imagem);
+        $produto->imagem = null;
+        $produto->save();
+
+        return Redirect::back();
     }
 }
