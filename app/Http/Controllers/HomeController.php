@@ -8,9 +8,29 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $produtos = Produto::all();
+        //
+        // SEM filtro
+        //
+        // $produtos = Produto::all();
+
+        //
+        // COM filtro
+        //
+        // $produtos = Produto::where('nome', 'like', "%$request->pesquisar%")->get();
+
+        //
+        // recomendável
+        //
+        $produtos = Produto::query();
+
+        $produtos->when($request->pesquisar, function($query, $vl) {
+            $query->where('nome', 'like', '%'. $vl. '%');
+        });
+
+        $produtos = $produtos->get();
+
         return view('home', compact('produtos'));
     }
 
